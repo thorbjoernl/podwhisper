@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "podwhisper"
+version = "0.1.0"
+description = "A python script to run an entire podcast rss feed through OpenAI's whisper."
+authors = ["thorbjoernl <51087536+thorbjoernl@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+whisper = { git = "https://github.com/openai/whisper.git", branch="main" }
+pypodcastparser = "^2.0.0"
+requests = "^2.28.1"
+pathvalidate = "^2.5.2"
+python-dotenv = "^0.21.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
