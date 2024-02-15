@@ -8,9 +8,11 @@ Configure it using the `.env` file. `WHISPER_MODEL` can be any of the options de
 
 ## Installation
 
+Poetry is required for installation.
+
 - Clone the repository.
-- `poetry install`
-- `poetry shell`
+- `poetry install` to install dependencies.
+- `poetry shell` to activate the virtual environments.
 
 ## Running the program
 
@@ -25,9 +27,24 @@ a `*.md` file per episode.
 
 ## Example Output
 
-Here is an example snippet of `*.md` for the most recent episode of
-[Hello Internet](https://www.hellointernet.fm/):
+Here is an example snippet of `*.md` for an episode of
+[99 Percent Invisible](https://99percentinvisible.org/):
 
 ```
+# 99% Invisible - 570- The White Castle System of Eating Houses
+**[0.0 - 3.2]** This is 99% Invisible.
 
+**[3.2 - 4.3]** I'm Roman Mars.
+
+**[4.3 - 9.5]** As anyone who has ever been to a White Castle restaurant
+
+**[9.5 - 13.6]** knows the food is, how do I put this?
+
+**[13.6 - 17.2]** It's never going to be considered classic five star food,
+
+**[17.2 - 21.2]** but you know what you're getting when you go there.
+
+**[21.2 - 23.5]** Jeremy Brooks has been a diehard White Castle fan
+
+**[23.5 - 26.8]** ever since going regularly as a kid with his dad.
 ```

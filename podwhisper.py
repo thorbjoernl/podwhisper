@@ -106,9 +106,11 @@ def main():
             with open(timestamped_path, "w") as f:
                 lines = [f"# {podcast.title} - {x.title}"]
                 for s in result["segments"]:
-                    lines.append(f"**[{s['start']} - {s['end']}]** {s['text'].strip()}")
+                    lines.append(
+                        f"**[{s['start']:.1f} - {s['end']:.1f}]** {s['text'].strip()}"
+                    )
                     lines.append("")
-                f.writelines(lines)
+                f.write("\n".join(lines))
 
             logger.info("Finishing item.")
         else:
