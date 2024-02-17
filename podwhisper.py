@@ -2,6 +2,7 @@ import sys
 import os
 import time
 import requests
+import statistics
 import whisper
 import json
 import pathlib
@@ -44,10 +45,17 @@ def main():
     if not os.path.exists(os.path.join("out", sanitize_filename(podcast.title))):
         os.makedirs(os.path.join("out", sanitize_filename(podcast.title)))
 
+    timings = []
     for i, x in enumerate(podcast.items, start=1):
+        start_time = time.perf_counter()
         logger.info(
             "Processing item " + str(i) + "/" + str(len(podcast.items)) + ": " + x.title
         )
+
+        if len(timings) > 0:
+            logger.info(
+                f"ETA: {(len(podcast.items)-1)*statistics.mean(timings):.2f} seconds"
+            )
 
         audio_url = x.enclosure_url
         file_extension = pathlib.Path(audio_url).suffix
@@ -116,6 +124,10 @@ def main():
         else:
             logger.info("Item already transcribed. Skipping...")
 
+        logging.info(
+            f"Episode processed in {time.perf_counter()-start_time:.2f} seconds."
+        )
+        timings.append(time.perf_counter() - start_time)
     logger.info("Done!")
 
 
