@@ -48,13 +48,11 @@ def main():
     timings = []
     for i, x in enumerate(podcast.items, start=1):
         start_time = time.perf_counter()
-        logger.info(
-            "Processing item " + str(i) + "/" + str(len(podcast.items)) + ": " + x.title
-        )
+        logger.info(f"Processing item {i}/{len(podcast.items)}: {x.title}")
 
         if len(timings) > 0:
             logger.info(
-                f"ETA: {(len(podcast.items)-1)*statistics.mean(timings):.2f} seconds"
+                f"ETA: {(len(podcast.items)-i+1)*statistics.mean(timings):.2f} seconds"
             )
 
         audio_url = x.enclosure_url
