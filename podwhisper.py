@@ -13,6 +13,14 @@ from pyPodcastParser.Podcast import Podcast
 from pathvalidate import sanitize_filename
 
 
+def timestampstr_from_seconds(seconds):
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    sec = int((seconds % 3600) % 60)
+
+    return f"{str(hours).rjust(2, '0')}:{str(minutes).rjust(2, '0')}:{str(round(sec, 1)).rjust(2, '0')}"
+
+
 def main():
     logger = logging.getLogger(__name__)
     logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO"))
@@ -82,21 +90,23 @@ def main():
             and os.path.exists(timestamped_path)
         )
         already_downloaded = os.path.exists(audio_path)
+
+        # Download if necessary.
+        if not already_transcribed and not already_downloaded:
+            logger.info("Downloading...")
+            while True:
+                r = requests.get(audio_url)
+                if r.status_code == 200:
+                    break
+                logger.warning("Download failed. Retrying in 1 second...")
+                time.sleep(1)
+            with open(audio_path, "wb") as f:
+                f.write(r.content)
+        else:
+            logger.info("Audio exists. Skipping download...")
+
+        # Transcribe.
         if not already_transcribed:
-            if not already_downloaded:
-                logger.info("Downloading...")
-                while True:
-                    r = requests.get(audio_url)
-                    if r.status_code == 200:
-                        break
-                    logger.warning("Download failed. Retrying in 1 second...")
-                    time.sleep(1)
-
-                with open(audio_path, "wb") as f:
-                    f.write(r.content)
-            else:
-                logger.info("Audio exists. Skipping download...")
-
             logger.info("Transcribing...")
             result = model.transcribe(audio_path)
 
@@ -113,7 +123,7 @@ def main():
                 lines = [f"# {podcast.title} - {x.title}"]
                 for s in result["segments"]:
                     lines.append(
-                        f"**[{s['start']:.1f} - {s['end']:.1f}]** {s['text'].strip()}"
+                        f"**{timestampstr_from_seconds(s['start'])}** {s['text'].strip()}"
                     )
                     lines.append("")
                 f.write("\n".join(lines))
