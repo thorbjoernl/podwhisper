@@ -60,7 +60,7 @@ def main():
 
         if len(timings) > 0:
             logger.info(
-                f"ETA: {(len(podcast.items)-i+1)*statistics.mean(timings):.2f} seconds"
+                f"ETA: {timestampstr_from_seconds((len(podcast.items)-i+1)*statistics.mean(timings))}"
             )
 
         audio_url = x.enclosure_url
@@ -133,7 +133,7 @@ def main():
             logger.info("Item already transcribed. Skipping...")
 
         logging.info(
-            f"Episode processed in {time.perf_counter()-start_time:.2f} seconds."
+            f"Episode processed in {timestampstr_from_seconds(time.perf_counter()-start_time)}."
         )
         timings.append(time.perf_counter() - start_time)
     logger.info("Done!")
