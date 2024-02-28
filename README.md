@@ -16,7 +16,7 @@ Poetry is required for installation.
 
 ## Running the program
 
-- `python pwhisper.py [URL]`
+- `python podwhisper.py [URL]`
 
 `[URL]` is a url to a podcast rss feed. It will produce a `*.txt`, `*.json` and
 a `*.md` file per episode.
@@ -31,20 +31,30 @@ Here is an example snippet of `*.md` for an episode of
 [99 Percent Invisible](https://99percentinvisible.org/):
 
 ```
-# 99% Invisible - 570- The White Castle System of Eating Houses
-**[0.0 - 3.2]** This is 99% Invisible.
+# 99% Invisible - 438- The Real Book [rebroadcast]
+**00:00:00** This is 99% Invisible. I'm Roman Mars.
 
-**[3.2 - 4.3]** I'm Roman Mars.
+**00:00:06** Since the mid-1970s, almost every jazz musician has owned a copy of the same book. It has
 
-**[4.3 - 9.5]** As anyone who has ever been to a White Castle restaurant
+**00:00:12** a peach-colored cover, a chunky 70s-style logo, and black plastic binding. It is delightfully
 
-**[9.5 - 13.6]** knows the food is, how do I put this?
+**00:00:19** homemade-looking, like it was printed by a bunch of teenagers at Kinko's. And inside
 
-**[13.6 - 17.2]** It's never going to be considered classic five star food,
+**00:00:24** is the sheet music for hundreds of common jazz tunes, also known as jazz standards,
 
-**[17.2 - 21.2]** but you know what you're getting when you go there.
+**00:00:31** all meticulously notated by hand. It's called The Real Book.
 
-**[21.2 - 23.5]** Jeremy Brooks has been a diehard White Castle fan
+**00:00:36** When I started playing jazz, I remember the first thing my guitar teacher said was, well,
 
-**[23.5 - 26.8]** ever since going regularly as a kid with his dad.
+**00:00:40** you gotta buy a real book.
+
+**00:00:42** That's producer Michael McAvanot.
+
+**00:00:44** Everybody had one. It just felt like something you were expected to own if you were a serious
+
+**00:00:49** musician. My high school jazz teacher, Mr. Leonard, had stacks of real books on his desk.
+
+**00:00:53** And he told me that he actually got his first real book at the place where they were originally
+
+**00:00:58** published, Berkeley College of Music in Boston. He had just arrived for his freshman year.
 ```
